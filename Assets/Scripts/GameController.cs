@@ -5,11 +5,11 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; } //Singleton
     public Transform PlayerTransform { get => _playerTransform; }
-    //public PatrolController PatrolController { get => _patrolController; }
+    public PatrolController PatrolController { get => _patrolController; }
 
     [Header("Scene Reference")]
     [SerializeField] private Transform _playerTransform;
-    //[SerializeField] private PatrolController _patrolController;
+    [SerializeField] private PatrolController _patrolController;
     //[Space]
     //[Header("Events")]
     //public UnityEvent OnUseBattery;

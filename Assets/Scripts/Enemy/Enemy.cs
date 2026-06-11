@@ -11,7 +11,7 @@ public enum EnemyState
 
 public class Enemy : MonoBehaviour
 {
-    //private PatrolController _patrolController;
+    private PatrolController _patrolController;
     private GameObject _nape;
     private Transform _player;
     private NavMeshAgent _agent;
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _nape = transform.GetChild(0).gameObject;
-        //_patrolController = GameController.Instance.PatrolController;
+        _patrolController = GameController.Instance.PatrolController;
         _player = GameController.Instance.PlayerTransform;
         _agent = GetComponent<NavMeshAgent>();
         SetState(EnemyState.Patrolling); //Só para testar
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vision();
+        //Vision();
     }
     public void Vision()
     {
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyState.Patrolling:
                 print("patrulhando");
-                //_agent.SetDestination(_patrolController.MoveToNextPoint());
+                _agent.SetDestination(_patrolController.MoveToNextPoint());
                 StartCoroutine(Patrilling());
                 break;
         }
