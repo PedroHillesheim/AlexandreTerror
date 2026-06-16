@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public enum EnemyState
 {
@@ -9,7 +10,7 @@ public enum EnemyState
     Patrolling
 }
 
-public class Enemy : MonoBehaviour
+public class Nemesis : MonoBehaviour
 {
     private PatrolController _patrolController;
     private GameObject _nape;
@@ -17,6 +18,11 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent _agent;
     private EnemyState _currentState;
     [SerializeField][Range(0.5f, 5)] private float _waitTime = 2f;
+    private float _jumpscareDistance = 3f;
+    [SerializeField] private UnityEvent _jumpscareUI;
+    //[SerializeField] private AudioSource _jumpscareSound;
+
+    private bool _hasJumpScared = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,13 +31,16 @@ public class Enemy : MonoBehaviour
         _patrolController = GameController.Instance.PatrolController;
         _player = GameController.Instance.PlayerTransform;
         _agent = GetComponent<NavMeshAgent>();
+        _jumpscareUI = GameController.Instance.JumpscareUI;
         SetState(EnemyState.Patrolling); //Só para testar
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Vision();
+        Vision();
+
+        CheckJumpscare();
     }
     public void Vision()
     {
@@ -49,6 +58,26 @@ public class Enemy : MonoBehaviour
                 return;
             StopAllCoroutines();
             SetState(EnemyState.Chasing);
+        }
+    }
+    void CheckJumpscare()
+    {
+        if (_hasJumpScared) return;
+        if (_currentState != EnemyState.Chasing) return;
+
+        float distance = Vector3.Distance(transform.position, _player.position);
+
+        if (distance <= _jumpscareDistance)
+        {
+            print("JumpScare");
+            _hasJumpScared = true;
+
+            gameObject.SetActive(false);
+
+            _jumpscareUI.Invoke();
+
+            //if (_jumpscareSound != null)
+            //    _jumpscareSound.Play();
         }
     }
     public void SetState(EnemyState newState)

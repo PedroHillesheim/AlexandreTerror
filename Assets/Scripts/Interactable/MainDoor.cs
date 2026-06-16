@@ -1,11 +1,17 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class MainDoor : MonoBehaviour, IInteractable
 {
+    [Header("Text")]
+    private TMP_Text _warningText;
+    private GameObject _warningTextGameObject;
+    [Header("Keys")]
     private int _keys = 0;
     [SerializeField] private int _maxKeys = 3;
+    [Space]
     [Header("Event")]
     [SerializeField] private UnityEvent OnDoorOpen;
     private Outline _outline;
@@ -14,6 +20,8 @@ public class MainDoor : MonoBehaviour, IInteractable
     {
         _outline = GetComponent<Outline>();
         _outline.enabled = false;
+        _warningTextGameObject = GameController.Instance.WarningTextGameObject;
+        _warningText = GameController.Instance.WarningText;
     }
 
     public void ShowOutline()
@@ -36,11 +44,22 @@ public class MainDoor : MonoBehaviour, IInteractable
     {
         if (_keys < _maxKeys)
         {
-            Debug.LogError("Mecânica a ser finalizada");
+            _warningTextGameObject.SetActive(true);
+            _warningText.text = _keys + "/" + _maxKeys;
+            StartCoroutine(TextAppear());
         }
         else
         {
             OnDoorOpen.Invoke();
         }
+    }
+    public void KeyCollect()
+    {
+        _keys++;
+    }
+    IEnumerator TextAppear()
+    {
+        yield return new WaitForSeconds(3f);
+        _warningTextGameObject.SetActive(false);
     }
 }
