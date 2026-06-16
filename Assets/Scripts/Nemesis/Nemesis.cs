@@ -10,7 +10,7 @@ public enum EnemyState
     Patrolling
 }
 
-public class Enemy : MonoBehaviour
+public class Nemesis : MonoBehaviour
 {
     private PatrolController _patrolController;
     private GameObject _nape;
