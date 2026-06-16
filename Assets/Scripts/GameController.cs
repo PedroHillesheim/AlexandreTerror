@@ -6,10 +6,12 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; } //Singleton
     public Transform PlayerTransform { get => _playerTransform; }
     public PatrolController PatrolController { get => _patrolController; }
+    public UnityEvent JumpscareUI { get => _jumpscareUI; }
 
     [Header("Scene Reference")]
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private PatrolController _patrolController;
+    [SerializeField] private UnityEvent _jumpscareUI;
     //[Space]
     //[Header("Events")]
     //public UnityEvent OnUseBattery;
