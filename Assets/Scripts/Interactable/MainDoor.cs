@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class MainDoor : MonoBehaviour, IInteractable
 {
@@ -42,5 +41,9 @@ public class MainDoor : MonoBehaviour, IInteractable
         {
             OnDoorOpen.Invoke();
         }
+    }
+    public void KeyCollect()
+    {
+        _keys++;
     }
 }

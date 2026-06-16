@@ -14,15 +14,22 @@ public class Key : MonoBehaviour, ICollectable
     public void Collect()
     {
         _OnKeyCollect.Invoke();
+        Destroy(gameObject);
     }
 
     public void HideOutline()
     {
-        throw new System.NotImplementedException("Mecãnica não feita");
+        if (_outline != null)
+        {
+            _outline.enabled = false;
+        }
     }
 
     public void ShowOutline()
     {
-        throw new System.NotImplementedException("Mecãnica não feita");
+        if (_outline != null)
+        {
+            _outline.enabled = true;
+        }
     }
 }
