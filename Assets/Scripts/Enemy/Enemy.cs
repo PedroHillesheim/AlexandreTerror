@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour
             {
                 SetState(EnemyState.Idle);
             }
-
         }
         else
         {
