@@ -4,7 +4,15 @@ public class Door : MonoBehaviour
 {
     [Header("Configuração")]
     public float openAngle = 90f;
-    public float speed = 180f; // graus por segundo
+    public float speed = 180f;
+
+    [Header("Tranca")]
+    public bool requiresKey = false;
+
+    [Header("Tremida da Porta Trancada")]
+    public float lockedShakeAngle = 10f;
+    public float lockedShakeSpeed = 35f;
+    public float lockedShakeDuration = 0.2f;
 
     [Header("Efeito de Batida")]
     public float bounceAmount = 6f;
@@ -14,6 +22,9 @@ public class Door : MonoBehaviour
     private bool isOpen = false;
     private bool bouncing = false;
     private bool hasBounced = false;
+
+    private bool shakingLocked = false;
+    private float shakeTimer = 0f;
 
     private float bounceTimer = 0f;
 
@@ -38,6 +49,26 @@ public class Door : MonoBehaviour
             {
                 if (hit.transform == transform)
                 {
+                    // Porta precisa de chave?
+                    if (requiresKey)
+                    {
+                        if (PlayerInventory.Instance == null)
+                        {
+                            Debug.LogWarning("PlayerInventory não encontrado!");
+                            return;
+                        }
+
+                        if (!PlayerInventory.Instance.hasKey)
+                        {
+                            Debug.Log("Você precisa de uma chave.");
+
+                            shakingLocked = true;
+                            shakeTimer = 0f;
+
+                            return;
+                        }
+                    }
+
                     isOpen = !isOpen;
 
                     if (isOpen)
@@ -52,6 +83,30 @@ public class Door : MonoBehaviour
             }
         }
 
+        // Tremida da porta trancada
+        if (shakingLocked)
+        {
+            shakeTimer += Time.deltaTime;
+
+            float offset =
+                Mathf.Sin(shakeTimer * lockedShakeSpeed) *
+                lockedShakeAngle *
+                (1f - (shakeTimer / lockedShakeDuration));
+
+            transform.rotation =
+                closedRotation *
+                Quaternion.Euler(0, 0, offset);
+
+            if (shakeTimer >= lockedShakeDuration)
+            {
+                shakingLocked = false;
+                transform.rotation = closedRotation;
+            }
+
+            return;
+        }
+
+        // Fechar porta
         if (!isOpen)
         {
             transform.rotation = Quaternion.RotateTowards(
@@ -62,6 +117,7 @@ public class Door : MonoBehaviour
         }
         else
         {
+            // Abrir porta
             if (!bouncing && !hasBounced)
             {
                 transform.rotation = Quaternion.RotateTowards(
@@ -76,6 +132,7 @@ public class Door : MonoBehaviour
                     bounceTimer = 0f;
                 }
             }
+            // Batida ao abrir
             else if (bouncing)
             {
                 bounceTimer += Time.deltaTime;
