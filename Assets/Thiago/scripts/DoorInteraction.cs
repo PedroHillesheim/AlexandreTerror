@@ -4,9 +4,18 @@ public class Door : MonoBehaviour
 {
     [Header("Configuração")]
     public float openAngle = 90f;
-    public float speed = 2f;
+    public float speed = 180f; // graus por segundo
+
+    [Header("Efeito de Batida")]
+    public float bounceAmount = 6f;
+    public float bounceSpeed = 8f;
+    public float damping = 3.5f;
 
     private bool isOpen = false;
+    private bool bouncing = false;
+    private bool hasBounced = false;
+
+    private float bounceTimer = 0f;
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
@@ -14,7 +23,7 @@ public class Door : MonoBehaviour
     void Start()
     {
         closedRotation = transform.rotation;
-        openRotation = closedRotation * Quaternion.Euler(0, openAngle, 0);
+        openRotation = closedRotation * Quaternion.Euler(0, 0, openAngle);
     }
 
     void Update()
@@ -22,7 +31,7 @@ public class Door : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Ray ray = Camera.main.ScreenPointToRay(
-                new Vector3(Screen.width / 2, Screen.height / 2)
+                new Vector3(Screen.width / 2f, Screen.height / 2f)
             );
 
             if (Physics.Raycast(ray, out RaycastHit hit, 3f))
@@ -30,16 +39,67 @@ public class Door : MonoBehaviour
                 if (hit.transform == transform)
                 {
                     isOpen = !isOpen;
+
+                    if (isOpen)
+                    {
+                        hasBounced = false;
+                    }
+                    else
+                    {
+                        bouncing = false;
+                    }
                 }
             }
         }
 
-        Quaternion targetRotation = isOpen ? openRotation : closedRotation;
+        if (!isOpen)
+        {
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                closedRotation,
+                speed * Time.deltaTime
+            );
+        }
+        else
+        {
+            if (!bouncing && !hasBounced)
+            {
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    openRotation,
+                    speed * Time.deltaTime
+                );
 
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            speed * Time.deltaTime
-        );
+                if (Quaternion.Angle(transform.rotation, openRotation) < 0.1f)
+                {
+                    bouncing = true;
+                    bounceTimer = 0f;
+                }
+            }
+            else if (bouncing)
+            {
+                bounceTimer += Time.deltaTime;
+
+                float offset =
+                    Mathf.Sin(bounceTimer * bounceSpeed) *
+                    bounceAmount *
+                    Mathf.Exp(-damping * bounceTimer);
+
+                transform.rotation =
+                    openRotation *
+                    Quaternion.Euler(0, 0, offset);
+
+                if (Mathf.Abs(offset) < 0.05f)
+                {
+                    bouncing = false;
+                    hasBounced = true;
+                    transform.rotation = openRotation;
+                }
+            }
+            else
+            {
+                transform.rotation = openRotation;
+            }
+        }
     }
 }
