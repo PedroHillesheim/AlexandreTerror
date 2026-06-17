@@ -1,8 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class MenuButtons : MonoBehaviour
 {
     public GameObject creditosCanvas;
+    public string nomeCenaJogo = "Game";
+
+    public void Jogar()
+    {
+        SceneManager.LoadScene(nomeCenaJogo);
+    }
 
     public void AbrirCreditos()
     {
@@ -16,6 +23,10 @@ public class SceneChanger : MonoBehaviour
 
     public void SairJogo()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }
