@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class KeyPickup : MonoBehaviour
 {
+    [Header("ID da Chave")]
+    public string keyID;
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Botão esquerdo
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -12,9 +15,10 @@ public class KeyPickup : MonoBehaviour
             {
                 if (hit.transform == transform)
                 {
-                    PlayerInventory.Instance.hasKey = true;
-
-                    Debug.Log("Chave obtida!");
+                    if (PlayerInventory.Instance != null)
+                    {
+                        PlayerInventory.Instance.AddKey(keyID);
+                    }
 
                     Destroy(gameObject);
                 }

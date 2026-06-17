@@ -9,6 +9,9 @@ public class Door : MonoBehaviour
     [Header("Tranca")]
     public bool requiresKey = false;
 
+    [Header("ID da Chave Necessária")]
+    public string keyID;
+
     [Header("Tremida da Porta Trancada")]
     public float lockedShakeAngle = 10f;
     public float lockedShakeSpeed = 35f;
@@ -49,7 +52,6 @@ public class Door : MonoBehaviour
             {
                 if (hit.transform == transform)
                 {
-                    // Porta precisa de chave?
                     if (requiresKey)
                     {
                         if (PlayerInventory.Instance == null)
@@ -58,9 +60,9 @@ public class Door : MonoBehaviour
                             return;
                         }
 
-                        if (!PlayerInventory.Instance.hasKey)
+                        if (!PlayerInventory.Instance.HasKey(keyID))
                         {
-                            Debug.Log("Você precisa de uma chave.");
+                            Debug.Log("Você precisa da chave: " + keyID);
 
                             shakingLocked = true;
                             shakeTimer = 0f;
@@ -83,7 +85,6 @@ public class Door : MonoBehaviour
             }
         }
 
-        // Tremida da porta trancada
         if (shakingLocked)
         {
             shakeTimer += Time.deltaTime;
@@ -106,7 +107,6 @@ public class Door : MonoBehaviour
             return;
         }
 
-        // Fechar porta
         if (!isOpen)
         {
             transform.rotation = Quaternion.RotateTowards(
@@ -117,7 +117,6 @@ public class Door : MonoBehaviour
         }
         else
         {
-            // Abrir porta
             if (!bouncing && !hasBounced)
             {
                 transform.rotation = Quaternion.RotateTowards(
@@ -132,7 +131,6 @@ public class Door : MonoBehaviour
                     bounceTimer = 0f;
                 }
             }
-            // Batida ao abrir
             else if (bouncing)
             {
                 bounceTimer += Time.deltaTime;
