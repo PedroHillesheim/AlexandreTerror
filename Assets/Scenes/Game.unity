@@ -877,9 +877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _waitTime: 2
-  _jumpscareUI:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1103615207
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1103615209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,7 +1086,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   _playerTransform: {fileID: 1354317970}
+  _nemesisTransform: {fileID: 1085946844}
   _patrolController: {fileID: 1791547953}
+  _warningTextGameObject: {fileID: 1849565286}
+  _warningText: {fileID: 1849565288}
   _jumpscareUI:
     m_PersistentCalls:
       m_Calls:
@@ -1117,8 +1117,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  _warningTextGameObject: {fileID: 1849565286}
-  _warningText: {fileID: 1849565288}
 --- !u!4 &1377732316
 Transform:
   m_ObjectHideFlags: 0
@@ -1149,7 +1147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1662320798
 Transform:
   m_ObjectHideFlags: 0
@@ -1218,8 +1216,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2710991, y: 1.5832977, z: 1.8130493}
-  m_Center: {x: -0.020292282, y: 0.15619719, z: 0.031223297}
+  m_Size: {x: 1.5349188, y: 1.5832977, z: 0.32096863}
+  m_Center: {x: 0.61161757, y: 0.15619719, z: -0.71481705}
 --- !u!1 &1791547952
 GameObject:
   m_ObjectHideFlags: 0
