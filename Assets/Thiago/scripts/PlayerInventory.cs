@@ -1,14 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
 
-    public bool hasKey = false;
+    private HashSet<string> keys = new HashSet<string>();
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Debug.Log("PlayerInventory carregado");
+    }
+
+    public void AddKey(string keyID)
+    {
+        keys.Add(keyID);
+        Debug.Log("Chave obtida: " + keyID);
+    }
+
+    public bool HasKey(string keyID)
+    {
+        return keys.Contains(keyID);
     }
 }

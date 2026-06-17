@@ -769,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1085946842
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -877,9 +877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _waitTime: 2
-  _jumpscareUI:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1103615207
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,14 +890,14 @@ GameObject:
   - component: {fileID: 1103615211}
   - component: {fileID: 1103615210}
   - component: {fileID: 1103615209}
-  - component: {fileID: 1103615214}
+  - component: {fileID: 1103615215}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1103615209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,7 +905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103615207}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02f5c3209f5a9314fb9dfbe984a708e9, type: 3}
   m_Name: 
@@ -1036,16 +1033,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1662320798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1103615214
+--- !u!114 &1103615215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103615207}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1940bcee898c94f4094e9772b6d5f825, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 1
@@ -1089,7 +1086,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   _playerTransform: {fileID: 1354317970}
+  _nemesisTransform: {fileID: 1085946844}
   _patrolController: {fileID: 1791547953}
+  _warningTextGameObject: {fileID: 1849565286}
+  _warningText: {fileID: 1849565288}
   _jumpscareUI:
     m_PersistentCalls:
       m_Calls:
@@ -1117,8 +1117,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  _warningTextGameObject: {fileID: 1849565286}
-  _warningText: {fileID: 1849565288}
 --- !u!4 &1377732316
 Transform:
   m_ObjectHideFlags: 0
@@ -1218,8 +1216,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2710991, y: 1.5832977, z: 1.8130493}
-  m_Center: {x: -0.020292282, y: 0.15619719, z: 0.031223297}
+  m_Size: {x: 1.5349188, y: 1.5832977, z: 0.32096863}
+  m_Center: {x: 0.61161757, y: 0.15619719, z: -0.71481705}
 --- !u!1 &1791547952
 GameObject:
   m_ObjectHideFlags: 0
