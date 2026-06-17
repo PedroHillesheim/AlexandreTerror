@@ -109,7 +109,7 @@ public class Nemesis : MonoBehaviour
             case EnemyState.Patrolling:
                 print("patrulhando");
                 _agent.SetDestination(_patrolController.MoveToNextPoint());
-                StartCoroutine(Patrilling());
+                StartCoroutine(Patrolling());
                 break;
         }
     }
@@ -119,7 +119,7 @@ public class Nemesis : MonoBehaviour
         yield return new WaitForSeconds(_waitTime); //Solução temporaria em wait
         SetState(EnemyState.Patrolling);
     }
-    IEnumerator Patrilling()
+    IEnumerator Patrolling()
     {
         yield return new WaitUntil(() => _agent.remainingDistance <= _agent.stoppingDistance);
         SetState(EnemyState.Idle);
