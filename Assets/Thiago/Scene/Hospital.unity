@@ -462,6 +462,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3224257935923099702, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.76613
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224257935923099702, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6122
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224257935923099703, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+      propertyPath: m_Radius
+      value: 0.37350273
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224257935923099703, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+      propertyPath: m_Center.x
+      value: 0.03645897
+      objectReference: {fileID: 0}
     - target: {fileID: 5836399628233475245, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.375
@@ -773,7 +789,7 @@ MonoBehaviour:
   openAngle: 90
   speed: 180
   requiresKey: 1
-  keyID: 02
+  keyID: 2
   lockedShakeAngle: 10
   lockedShakeSpeed: 35
   lockedShakeDuration: 0.2
@@ -987,8 +1003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b628602da12bd5340b54cee17117d913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityOutline
-  player: {fileID: 988486059}
-  distanceToShow: 3
+  player: {fileID: 991119779}
+  distanceToShow: 7
 --- !u!65 &842024836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1010,6 +1026,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.068163, y: 1.3627802, z: 0.40435767}
   m_Center: {x: -1.2366775, y: -0.06306232, z: 0.00016469773}
+--- !u!114 &842024840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842024830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0c263898ac9a45a52ddcdb8d31ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
+  keyID: 2
 --- !u!1 &869832850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5666683460415940531, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
@@ -1214,6 +1243,9 @@ PrefabInstance:
       addedObject: {fileID: 842024835}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b4a2b5dffd89cea41b363ba4ec4890f4, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 842024840}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b4a2b5dffd89cea41b363ba4ec4890f4, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 842024836}
   m_SourcePrefab: {fileID: 100100000, guid: b4a2b5dffd89cea41b363ba4ec4890f4, type: 3}
 --- !u!1 &963958526 stripped
@@ -1300,11 +1332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4541dfe5644f6d4fa4fde746b2bdc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
---- !u!4 &988486059 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7663668318772284412, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
-  m_PrefabInstance: {fileID: 514259131}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &991119772 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7705291257981825135, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
@@ -1323,6 +1350,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookOutline
   distance: 3
+--- !u!4 &991119779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7705291257981825130, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+  m_PrefabInstance: {fileID: 514259131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1017328563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2843045731040922206, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
@@ -1691,6 +1723,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
+    - target: {fileID: -5011454986148796144, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
+      propertyPath: 'm_Materials.Array.data[101]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7353b1839f3bc4f4195d66580cbadc4d, type: 2}
     - target: {fileID: -2163262645878442720, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
       propertyPath: m_TagString
       value: Interactable
@@ -1719,10 +1755,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
+    - target: {fileID: 4036118123052423567, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.415
+      objectReference: {fileID: 0}
     - target: {fileID: 5726230805605348663, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
+    - target: {fileID: 6838268159587673718, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4db1bfdc8fdb63b4bbbaeaa03a6f5a3b, type: 2}
     - target: {fileID: 6993649217131008266, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
       propertyPath: m_TagString
       value: Interactable
