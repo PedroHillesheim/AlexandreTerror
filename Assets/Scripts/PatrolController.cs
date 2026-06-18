@@ -19,7 +19,7 @@ public class PatrolController : MonoBehaviour
     {
         if (_patrolPoints.Length == 0)
             return Vector3.zero;
-        Vector3 nextPoint = _patrolPoints[_currentPointIndex].position;
+        Vector3 nextPoint = _patrolPoints[_currentPointIndex].localPosition;
         _currentPointIndex++;
         if (_currentPointIndex >= _patrolPoints.Length)
             _currentPointIndex = 0;

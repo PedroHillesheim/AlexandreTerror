@@ -33,6 +33,7 @@ public class Nemesis : MonoBehaviour
         _player = GameController.Instance.PlayerTransform;
         _agent = GetComponent<NavMeshAgent>();
         _jumpscareUI = GameController.Instance.JumpscareUI;
+        SetState(EnemyState.Idle);
     }
 
     // Update is called once per frame
@@ -40,14 +41,13 @@ public class Nemesis : MonoBehaviour
     {
         Vision();
 
-        //CheckJumpscare();
+        CheckJumpscare();
     }
     public void Vision()
     {
         bool playerInSight = Physics.Linecast(transform.position, _player.position, out RaycastHit hit);
         if (playerInSight)
         {
-            print("não sei o que fazer");
             if (_currentState.Equals(EnemyState.Chasing))
                 return;
             StopAllCoroutines();
@@ -55,11 +55,10 @@ public class Nemesis : MonoBehaviour
         }
         else
         {
-            print("não sei o que fazer");
-            if (_currentState.Equals(EnemyState.Chasing))
+            if (!_currentState.Equals(EnemyState.Chasing))
                 return;
             StopAllCoroutines();
-            SetState(EnemyState.Chasing);
+            SetState(EnemyState.Idle);
         }
     }
     void CheckJumpscare()
@@ -89,14 +88,12 @@ public class Nemesis : MonoBehaviour
         {
             case EnemyState.Idle:
                 break;
-            case EnemyState.Chasing:
-                print("Estou precario");
+            case EnemyState.Chasing:;
                 _agent.SetDestination(lastPlaterPos);
                 _isFirstTimePatrolling = true;
                 _nape.SetActive(true);
                 break;
             case EnemyState.Patrolling:
-                print("Parou de patrulhar");
                 break;
         }
         _currentState = newState;
@@ -107,10 +104,10 @@ public class Nemesis : MonoBehaviour
                 StartCoroutine(Wait());
                 break;
             case EnemyState.Chasing:
+                _agent.SetDestination(_player.position);
                 _nape.SetActive(false);
                 break;
             case EnemyState.Patrolling:
-                print("patrulhando");
                 if (_isFirstTimePatrolling == true)
                 {
                     _agent.SetDestination(_patrolController.GetClosestPoint());
@@ -126,11 +123,13 @@ public class Nemesis : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitUntil(() => _agent.remainingDistance <= _agent.stoppingDistance);
+        yield return new WaitForSeconds(_waitTime);
         SetState(EnemyState.Patrolling);
     }
     IEnumerator Patrolling()
     {
         yield return new WaitUntil(() => _agent.remainingDistance <= _agent.stoppingDistance);
+        yield return new WaitForSeconds(_waitTime);
         _isFirstTimePatrolling = false;
         SetState(EnemyState.Idle);
     }
