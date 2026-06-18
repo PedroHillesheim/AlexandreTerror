@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class JumpScareTimeinScreen : MonoBehaviour
 {
@@ -16,5 +17,9 @@ public class JumpScareTimeinScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(_jumpScareTime);
         _jumpScareDesactivate.Invoke();
+    }
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -88,14 +88,12 @@ public class Nemesis : MonoBehaviour
         {
             case EnemyState.Idle:
                 break;
-            case EnemyState.Chasing:
-                print("Estou precario");
+            case EnemyState.Chasing:;
                 _agent.SetDestination(lastPlaterPos);
                 _isFirstTimePatrolling = true;
                 _nape.SetActive(true);
                 break;
             case EnemyState.Patrolling:
-                print("Parou de patrulhar");
                 break;
         }
         _currentState = newState;
@@ -110,7 +108,6 @@ public class Nemesis : MonoBehaviour
                 _nape.SetActive(false);
                 break;
             case EnemyState.Patrolling:
-                print("patrulhando");
                 if (_isFirstTimePatrolling == true)
                 {
                     _agent.SetDestination(_patrolController.GetClosestPoint());

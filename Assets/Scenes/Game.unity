@@ -447,8 +447,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+      - m_Target: {fileID: 256756378}
+        m_TargetAssemblyTypeName: JumpScareTimeinScreen, Assembly-CSharp
         m_MethodName: RestartScene
         m_Mode: 1
         m_Arguments:
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f6e30842f67e646ade202cda08ef4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _waitTime: 2
+  _waitTime: 0.5
 --- !u!1 &1103615207
 GameObject:
   m_ObjectHideFlags: 0
