@@ -630,7 +630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b7174ac04b7dc45b2ea920392e441c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButtons
-  _scene: 
 --- !u!1001 &754316067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,7 +1146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1662320798
 Transform:
   m_ObjectHideFlags: 0
@@ -1181,7 +1180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1690621944
 Transform:
   m_ObjectHideFlags: 0
