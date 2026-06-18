@@ -33,6 +33,7 @@ public class Nemesis : MonoBehaviour
         _player = GameController.Instance.PlayerTransform;
         _agent = GetComponent<NavMeshAgent>();
         _jumpscareUI = GameController.Instance.JumpscareUI;
+        SetState(EnemyState.Idle);
     }
 
     // Update is called once per frame
@@ -47,17 +48,17 @@ public class Nemesis : MonoBehaviour
         bool playerInSight = Physics.Linecast(transform.position, _player.position, out RaycastHit hit);
         if (playerInSight)
         {
-            if (!_currentState.Equals(EnemyState.Chasing))
+            if (_currentState.Equals(EnemyState.Chasing))
                 return;
             StopAllCoroutines();
-            SetState(EnemyState.Idle);
+            SetState(EnemyState.Chasing);
         }
         else
         {
             if (!_currentState.Equals(EnemyState.Chasing))
                 return;
             StopAllCoroutines();
-            SetState(EnemyState.Chasing);
+            SetState(EnemyState.Idle);
         }
     }
     void CheckJumpscare()
@@ -105,6 +106,7 @@ public class Nemesis : MonoBehaviour
                 StartCoroutine(Wait());
                 break;
             case EnemyState.Chasing:
+                _agent.SetDestination(_player.position);
                 _nape.SetActive(false);
                 break;
             case EnemyState.Patrolling:
@@ -124,11 +126,13 @@ public class Nemesis : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitUntil(() => _agent.remainingDistance <= _agent.stoppingDistance);
+        yield return new WaitForSeconds(_waitTime);
         SetState(EnemyState.Patrolling);
     }
     IEnumerator Patrolling()
     {
         yield return new WaitUntil(() => _agent.remainingDistance <= _agent.stoppingDistance);
+        yield return new WaitForSeconds(_waitTime);
         _isFirstTimePatrolling = false;
         SetState(EnemyState.Idle);
     }
