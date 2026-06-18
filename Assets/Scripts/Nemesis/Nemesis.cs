@@ -40,7 +40,7 @@ public class Nemesis : MonoBehaviour
     {
         Vision();
 
-        //CheckJumpscare();
+        CheckJumpscare();
     }
     public void Vision()
     {
