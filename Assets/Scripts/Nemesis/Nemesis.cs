@@ -52,17 +52,17 @@ public class Nemesis : MonoBehaviour
         bool playerInSight = Physics.Linecast(transform.position, _player.position, out RaycastHit hit);
         if (playerInSight)
         {
-            if (_currentState.Equals(EnemyState.Chasing))
-                return;
-            StopAllCoroutines();
-            SetState(EnemyState.Chasing);
-        }
-        else
-        {
             if (!_currentState.Equals(EnemyState.Chasing))
                 return;
             StopAllCoroutines();
             SetState(EnemyState.Idle);
+        }
+        else
+        {
+            if (_currentState.Equals(EnemyState.Chasing))
+                return;
+            StopAllCoroutines();
+            SetState(EnemyState.Chasing);
         }
     }
     void CheckJumpscare()

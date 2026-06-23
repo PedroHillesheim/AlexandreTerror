@@ -8,8 +8,6 @@ public class GameController : MonoBehaviour
     public Transform PlayerTransform { get => _playerTransform; }
     public PatrolController PatrolController { get => _patrolController; }
     public UnityEvent JumpscareUI { get => _jumpscareUI; }
-    public GameObject WarningTextGameObject { get => _warningTextGameObject; }
-    public TMP_Text WarningText { get => _warningText; }
     public Transform NemesisTransform { get => _nemesisTransform; }
 
     [Header("Scene Reference")]
@@ -17,10 +15,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _nemesisTransform;
     [SerializeField] private PatrolController _patrolController;
-    [Space]
-    [Header("Text")]
-    [SerializeField] private GameObject _warningTextGameObject;
-    [SerializeField] private TMP_Text _warningText;
     [Space]
     [Header("Events")]
     [SerializeField] private UnityEvent _jumpscareUI;
