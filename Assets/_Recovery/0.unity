@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ce678a3d911fa478262b90c848ff11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuParallax
-  movementAmount: 10
+  movementAmount: 20
 --- !u!114 &625890311
 MonoBehaviour:
   m_ObjectHideFlags: 0
