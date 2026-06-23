@@ -9,6 +9,9 @@ public class MenuManager : MonoBehaviour
     [Header("Canvas de Créditos")]
     [SerializeField] private GameObject creditsCanvas;
 
+    [Header("Canvas de titulo")]
+    [SerializeField] private GameObject titleCanvas;
+
     private void Start()
     {
         if (creditsCanvas != null)
@@ -26,6 +29,8 @@ public class MenuManager : MonoBehaviour
     {
         if (creditsCanvas != null)
             creditsCanvas.SetActive(true);
+        if (titleCanvas != null)
+            titleCanvas.SetActive(false);
     }
 
     // Botão Voltar dos Créditos
@@ -33,6 +38,8 @@ public class MenuManager : MonoBehaviour
     {
         if (creditsCanvas != null)
             creditsCanvas.SetActive(false);
+        if (titleCanvas != null)
+            titleCanvas.SetActive(true);
     }
 
     // Botão Sair
