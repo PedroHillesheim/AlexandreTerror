@@ -21,6 +21,7 @@ public class Nemesis : MonoBehaviour
     [SerializeField][Range(0.5f, 5)] private float _waitTime = 2f;
     private float _jumpscareDistance = 3f;
     private UnityEvent _jumpscareUI;
+    private Animator _animator;
     //[SerializeField] private AudioSource _jumpscareSound;
 
     private bool _hasJumpScared = false;
@@ -34,6 +35,7 @@ public class Nemesis : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _jumpscareUI = GameController.Instance.JumpscareUI;
         SetState(EnemyState.Idle);
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,23 +44,25 @@ public class Nemesis : MonoBehaviour
         Vision();
 
         CheckJumpscare();
+
+        //AnimationChanger();
     }
     public void Vision()
     {
         bool playerInSight = Physics.Linecast(transform.position, _player.position, out RaycastHit hit);
         if (playerInSight)
         {
-            if (_currentState.Equals(EnemyState.Chasing))
-                return;
-            StopAllCoroutines();
-            SetState(EnemyState.Chasing);
-        }
-        else
-        {
             if (!_currentState.Equals(EnemyState.Chasing))
                 return;
             StopAllCoroutines();
             SetState(EnemyState.Idle);
+        }
+        else
+        {
+            if (_currentState.Equals(EnemyState.Chasing))
+                return;
+            StopAllCoroutines();
+            SetState(EnemyState.Chasing);
         }
     }
     void CheckJumpscare()
@@ -81,6 +85,27 @@ public class Nemesis : MonoBehaviour
             //    _jumpscareSound.Play();
         }
     }
+    /*void AnimationChanger()
+    {
+        if (_currentState.Equals(EnemyState.Chasing))
+        {
+            _animator.SetBool("isChasing", true);
+            _animator.SetBool("isIdle", false);
+            _animator.SetBool("isPatrolling", false);
+        }
+        else if(_currentState.Equals(EnemyState.Idle))
+        {
+            _animator.SetBool("isChasing", false);
+            _animator.SetBool("isIdle", true);
+            _animator.SetBool("isPatrolling", false);
+        }
+        else
+        {
+            _animator.SetBool("isChasing", false);
+            _animator.SetBool("isIdle", false);
+            _animator.SetBool("isPatrolling", true);
+        }
+    }*/
     public void SetState(EnemyState newState)
     {
         Vector3 lastPlaterPos = _player.position;
