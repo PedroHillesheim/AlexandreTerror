@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SlidingDoor : MonoBehaviour
 {
@@ -6,9 +7,16 @@ public class SlidingDoor : MonoBehaviour
     public Vector3 moveDirection = new Vector3(0, 3, 0);
     public float speed = 3f;
 
-    [Header("Tranca")]
-    public bool requiresKey = false;
-    public string keyID = "Key1";
+    [Header("Troca de Cena")]
+    public bool changeSceneAfterOpen = false;
+    public string sceneName;
+
+    [Header("Itens Necessários")]
+    public bool requiresItems = false;
+
+    public string requiredKey = "Key";
+    public string requiredFlashlight = "Flashlight";
+    public string requiredCamera = "Camera";
 
     [Header("Tremida da Porta Trancada")]
     public float lockedShakeAmount = 0.08f;
@@ -25,6 +33,8 @@ public class SlidingDoor : MonoBehaviour
     private bool hasBounced;
 
     private bool shakingLocked;
+    private bool sceneChanged;
+
     private float shakeTimer;
     private float bounceTimer;
 
@@ -49,7 +59,7 @@ public class SlidingDoor : MonoBehaviour
             {
                 if (hit.transform == transform)
                 {
-                    if (requiresKey)
+                    if (requiresItems)
                     {
                         if (PlayerInventory.Instance == null)
                         {
@@ -57,31 +67,29 @@ public class SlidingDoor : MonoBehaviour
                             return;
                         }
 
-                        if (!PlayerInventory.Instance.HasKey(keyID))
+                        bool hasEverything =
+                            PlayerInventory.Instance.HasKey(requiredKey) &&
+                            PlayerInventory.Instance.HasKey(requiredFlashlight) &&
+                            PlayerInventory.Instance.HasKey(requiredCamera);
+
+                        if (!hasEverything)
                         {
                             shakingLocked = true;
                             shakeTimer = 0f;
 
-                            Debug.Log("Você precisa da chave: " + keyID);
+                            Debug.Log("Você precisa da chave, lanterna e câmera.");
                             return;
                         }
                     }
 
-                    isOpen = !isOpen;
-
-                    if (isOpen)
-                    {
-                        hasBounced = false;
-                    }
-                    else
-                    {
-                        bouncing = false;
-                    }
+                    isOpen = true;
+                    hasBounced = false;
                 }
             }
         }
 
-        // Tremida da porta trancada
+
+        // Tremida quando trancada
         if (shakingLocked)
         {
             shakeTimer += Time.deltaTime;
@@ -104,17 +112,9 @@ public class SlidingDoor : MonoBehaviour
             return;
         }
 
-        // Fechar porta
-        if (!isOpen)
-        {
-            transform.localPosition = Vector3.MoveTowards(
-                transform.localPosition,
-                closedPosition,
-                speed * Time.deltaTime
-            );
-        }
-        // Abrir porta
-        else
+
+        // Abrir
+        if (isOpen)
         {
             if (!bouncing && !hasBounced)
             {
@@ -124,12 +124,14 @@ public class SlidingDoor : MonoBehaviour
                     speed * Time.deltaTime
                 );
 
+
                 if (Vector3.Distance(transform.localPosition, openPosition) < 0.01f)
                 {
                     bouncing = true;
                     bounceTimer = 0f;
                 }
             }
+
             else if (bouncing)
             {
                 bounceTimer += Time.deltaTime;
@@ -139,17 +141,28 @@ public class SlidingDoor : MonoBehaviour
                     bounceAmount *
                     Mathf.Exp(-damping * bounceTimer);
 
+
                 transform.localPosition =
                     openPosition +
                     moveDirection.normalized * offset;
+
 
                 if (Mathf.Abs(offset) < 0.005f)
                 {
                     bouncing = false;
                     hasBounced = true;
                     transform.localPosition = openPosition;
+
+
+                    // TROCA DE CENA AQUI
+                    if (changeSceneAfterOpen && !sceneChanged)
+                    {
+                        sceneChanged = true;
+                        SceneManager.LoadScene(sceneName);
+                    }
                 }
             }
+
             else
             {
                 transform.localPosition = openPosition;

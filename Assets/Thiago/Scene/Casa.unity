@@ -900,6 +900,32 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -173581546909613224, guid: 6a9831a071443d94d9b92d285766a60c, type: 3}
+--- !u!114 &535311188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535311182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8a98c2d4a453f42b19ccb133fea535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlidingDoor
+  moveDirection: {x: 0, y: 0, z: 1}
+  speed: 3
+  changeSceneAfterOpen: 1
+  sceneName: 
+  requiresItems: 1
+  requiredKey: Key
+  requiredFlashlight: Flashlight
+  requiredCamera: Camera
+  lockedShakeAmount: 0.08
+  lockedShakeSpeed: 40
+  lockedShakeDuration: 0.2
+  bounceAmount: 0.08
+  bounceSpeed: 12
+  damping: 4
 --- !u!1 &588606919 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3140851680625653838, guid: 6a9831a071443d94d9b92d285766a60c, type: 3}
@@ -1076,12 +1102,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingDoor
   moveDirection: {x: 1, y: 0, z: 0}
   speed: 3
-  requiresKey: 0
-  keyID: Key1
+  changeSceneAfterOpen: 0
+  sceneName: 
+  requiresItems: 0
+  requiredKey: Key
+  requiredFlashlight: Flashlight
+  requiredCamera: Camera
   lockedShakeAmount: 0.08
   lockedShakeSpeed: 40
   lockedShakeDuration: 0.2
-  bounceAmount: 0.1
+  bounceAmount: 0.08
   bounceSpeed: 12
   damping: 4
 --- !u!114 &658085272
@@ -1371,14 +1401,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8a98c2d4a453f42b19ccb133fea535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlidingDoor
-  moveDirection: {x: 1, y: 0, z: 0}
+  moveDirection: {x: 0, y: 3, z: 0}
   speed: 3
-  requiresKey: 1
-  keyID: 0
+  changeSceneAfterOpen: 0
+  sceneName: 
+  requiresItems: 1
+  requiredKey: 'ninguem vai abrir isso aq '
+  requiredFlashlight: Flashlight
+  requiredCamera: Camera
   lockedShakeAmount: 0.08
   lockedShakeSpeed: 40
   lockedShakeDuration: 0.2
-  bounceAmount: 0.1
+  bounceAmount: 0.08
   bounceSpeed: 12
   damping: 4
 --- !u!1001 &992216905
@@ -1486,6 +1520,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -4766017759750415202, guid: 6a9831a071443d94d9b92d285766a60c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 535311184}
+    - targetCorrespondingSourceObject: {fileID: -4766017759750415202, guid: 6a9831a071443d94d9b92d285766a60c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 535311188}
     - targetCorrespondingSourceObject: {fileID: -8657434364802654418, guid: 6a9831a071443d94d9b92d285766a60c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 658085268}
@@ -1813,8 +1850,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingDoor
   moveDirection: {x: 1, y: 0, z: 0}
   speed: 3
-  requiresKey: 0
-  keyID: Key1
+  changeSceneAfterOpen: 0
+  sceneName: 
+  requiresItems: 0
+  requiredKey: Key
+  requiredFlashlight: Flashlight
+  requiredCamera: Camera
   lockedShakeAmount: 0.08
   lockedShakeSpeed: 40
   lockedShakeDuration: 0.2
@@ -3694,12 +3735,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingDoor
   moveDirection: {x: -1, y: 0, z: 0}
   speed: 3
-  requiresKey: 0
-  keyID: 0
+  changeSceneAfterOpen: 0
+  sceneName: 
+  requiresItems: 0
+  requiredKey: Key
+  requiredFlashlight: Flashlight
+  requiredCamera: Camera
   lockedShakeAmount: 0.08
   lockedShakeSpeed: 40
   lockedShakeDuration: 0.2
-  bounceAmount: 0.1
+  bounceAmount: 0.08
   bounceSpeed: 12
   damping: 4
 --- !u!114 &2029394983
@@ -4018,7 +4063,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b1c08280910f30b4ab8257a29b31dd6d, type: 3}
+  - {fileID: 2100000, guid: bcd10c0d83158fc45af82d0c05fc43ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4149,8 +4194,9 @@ GameObject:
   - component: {fileID: 233924157}
   - component: {fileID: 919132148527539459}
   - component: {fileID: 919132148527539458}
+  - component: {fileID: 919132148527539460}
   m_Layer: 0
-  m_Name: LAATSTE VERSIE
+  m_Name: Camera
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4204,6 +4250,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.171316, y: 16.652277, z: 27.018717}
   m_Center: {x: 0.6561168, y: 7.826142, z: -0.97516626}
+--- !u!114 &919132148527539460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148527539457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0c263898ac9a45a52ddcdb8d31ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
+  keyID: Camera
 --- !u!33 &1006708113370150485
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5075,7 +5134,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b1c08280910f30b4ab8257a29b31dd6d, type: 3}
+  - {fileID: 2100000, guid: bccc358ef5deaad409fae01212dc6ee5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5263,7 +5322,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b1c08280910f30b4ab8257a29b31dd6d, type: 3}
+  - {fileID: 2100000, guid: 47640e7c2a75028469aa7ff907acc6a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5349,7 +5408,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b1c08280910f30b4ab8257a29b31dd6d, type: 3}
+  - {fileID: 2100000, guid: d2a5fc47cc78a4b4aa25a6479a774b46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6478,6 +6537,9 @@ GameObject:
   - component: {fileID: 7559642207578019320}
   - component: {fileID: 7559642207578019322}
   - component: {fileID: 7559642207578019321}
+  - component: {fileID: 7559642207578019323}
+  - component: {fileID: 7559642207578019325}
+  - component: {fileID: 7559642207578019324}
   m_Layer: 0
   m_Name: Key1
   m_TagString: Untagged
@@ -6662,9 +6724,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7852085867026539989}
+  - component: {fileID: 7852085867026539991}
+  - component: {fileID: 7852085867026539990}
+  - component: {fileID: 7852085867026539992}
+  - component: {fileID: 7852085867026539993}
   m_Layer: 0
-  m_Name: TL_low
-  m_TagString: Untagged
+  m_Name: Flashlight
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6782,6 +6848,67 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &7559642207578019323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152313695008668050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0c263898ac9a45a52ddcdb8d31ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
+  keyID: Key
+--- !u!65 &7559642207578019324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152313695008668050}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04192378, y: 0.016362717, z: 0.0008254961}
+  m_Center: {x: -0.012780534, y: -7.628661e-10, z: 0.00009020205}
+--- !u!54 &7559642207578019325
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152313695008668050}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7590921383978808759
 GameObject:
   m_ObjectHideFlags: 0
@@ -6921,6 +7048,85 @@ Transform:
   - {fileID: 1997676960413343050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7852085867026539990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472570000302882671}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.054927826, y: 0.18982317, z: 0.05471611}
+  m_Center: {x: 0.00023460388, y: 0.00713674, z: -0.00092601776}
+--- !u!54 &7852085867026539991
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472570000302882671}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7852085867026539992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472570000302882671}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &7852085867026539993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472570000302882671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0c263898ac9a45a52ddcdb8d31ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
+  keyID: Flashlight
 --- !u!33 &7983543105790330371
 MeshFilter:
   m_ObjectHideFlags: 0
