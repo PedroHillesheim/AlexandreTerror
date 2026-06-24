@@ -16,6 +16,7 @@ public class FinalKey : MonoBehaviour, ICollectable
     public void Collect()
     {
         _finalKeyCollected.Invoke();
+        Destroy(gameObject);
     }
 
     public void ShowOutline()
