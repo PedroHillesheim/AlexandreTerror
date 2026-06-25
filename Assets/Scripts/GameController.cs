@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public Transform NemesisTransform { get => _nemesisTransform; }
     public Transform DoorLowFloorTransform { get => _doorLowFloorTransform; }
     public Transform DoorHighFloorTransform { get => _doorHighFloorTransform;  }
+    public CharacterController Charactercontroller { get => characterController; }
 
     [Header("Scene Reference")]
     [Space]
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform _doorLowFloorTransform;
     [SerializeField] private Transform _doorHighFloorTransform;
     [SerializeField] private PatrolController _patrolController;
+    [SerializeField] private CharacterController characterController;
     [Space]
     [Header("Events")]
     [SerializeField] private UnityEvent _jumpscareUI;

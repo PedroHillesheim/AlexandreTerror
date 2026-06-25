@@ -918,6 +918,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1925605434713372313, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
   m_PrefabInstance: {fileID: 514259131}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &514259139 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 1293324038446689321, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+  m_PrefabInstance: {fileID: 514259131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &516463638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2163262645878442720, guid: 9ee14c0ba6b88d34c984de48f9a6ae72, type: 3}
@@ -2008,6 +2013,7 @@ MonoBehaviour:
   _doorLowFloorTransform: {fileID: 443252050}
   _doorHighFloorTransform: {fileID: 1863517867}
   _patrolController: {fileID: 1174358359}
+  characterController: {fileID: 514259139}
   _jumpscareUI:
     m_PersistentCalls:
       m_Calls:

@@ -13,6 +13,7 @@ public class TeleportDoor : MonoBehaviour, IInteractable
     private Transform _highFloorDoor;
     private Transform _playerTransform;
     private Outline _outline;
+    private CharacterController characterController;
 
     public void ShowOutline()
     {
@@ -34,17 +35,22 @@ public class TeleportDoor : MonoBehaviour, IInteractable
     {
         if( _currentState == DoorFloor.Low )
         {
-            _playerTransform = _highFloorDoor;
+            characterController.enabled = false;
+            _playerTransform.position = _highFloorDoor.position;
+            characterController.enabled = true;
         }
         else if ( _currentState == DoorFloor.High)
         {
-            _playerTransform = _lowFloorDoor;
+            characterController.enabled = false;
+            _playerTransform.position = _lowFloorDoor.position;
+            characterController.enabled = true;
         }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        characterController = GameController.Instance.Charactercontroller;
         _highFloorDoor = GameController.Instance.DoorHighFloorTransform;
         _lowFloorDoor = GameController.Instance.DoorLowFloorTransform;
         _playerTransform = GameController.Instance.PlayerTransform;
