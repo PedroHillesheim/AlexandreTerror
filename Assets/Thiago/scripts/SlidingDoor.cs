@@ -59,7 +59,7 @@ public class SlidingDoor : MonoBehaviour
             {
                 if (hit.transform == transform)
                 {
-                    if (requiresItems)
+                    if (requiresItems && !isOpen)
                     {
                         if (PlayerInventory.Instance == null)
                         {
@@ -82,12 +82,13 @@ public class SlidingDoor : MonoBehaviour
                         }
                     }
 
-                    isOpen = true;
+                    // Alterna entre abrir e fechar
+                    isOpen = !isOpen;
                     hasBounced = false;
+                    bouncing = false;
                 }
             }
         }
-
 
         // Tremida quando trancada
         if (shakingLocked)
@@ -112,60 +113,52 @@ public class SlidingDoor : MonoBehaviour
             return;
         }
 
+        // Movimento da porta
+        Vector3 targetPosition = isOpen ? openPosition : closedPosition;
 
-        // Abrir
-        if (isOpen)
+        if (!bouncing)
         {
-            if (!bouncing && !hasBounced)
+            transform.localPosition = Vector3.MoveTowards(
+                transform.localPosition,
+                targetPosition,
+                speed * Time.deltaTime
+            );
+
+            if (Vector3.Distance(transform.localPosition, targetPosition) < 0.01f)
             {
-                transform.localPosition = Vector3.MoveTowards(
-                    transform.localPosition,
-                    openPosition,
-                    speed * Time.deltaTime
-                );
+                transform.localPosition = targetPosition;
 
-
-                if (Vector3.Distance(transform.localPosition, openPosition) < 0.01f)
+                if (isOpen && !hasBounced)
                 {
                     bouncing = true;
                     bounceTimer = 0f;
                 }
             }
+        }
+        else
+        {
+            bounceTimer += Time.deltaTime;
 
-            else if (bouncing)
+            float offset =
+                Mathf.Sin(bounceTimer * bounceSpeed) *
+                bounceAmount *
+                Mathf.Exp(-damping * bounceTimer);
+
+            transform.localPosition =
+                openPosition +
+                moveDirection.normalized * offset;
+
+            if (Mathf.Abs(offset) < 0.005f)
             {
-                bounceTimer += Time.deltaTime;
-
-                float offset =
-                    Mathf.Sin(bounceTimer * bounceSpeed) *
-                    bounceAmount *
-                    Mathf.Exp(-damping * bounceTimer);
-
-
-                transform.localPosition =
-                    openPosition +
-                    moveDirection.normalized * offset;
-
-
-                if (Mathf.Abs(offset) < 0.005f)
-                {
-                    bouncing = false;
-                    hasBounced = true;
-                    transform.localPosition = openPosition;
-
-
-                    // TROCA DE CENA AQUI
-                    if (changeSceneAfterOpen && !sceneChanged)
-                    {
-                        sceneChanged = true;
-                        SceneManager.LoadScene(sceneName);
-                    }
-                }
-            }
-
-            else
-            {
+                bouncing = false;
+                hasBounced = true;
                 transform.localPosition = openPosition;
+
+                if (changeSceneAfterOpen && !sceneChanged)
+                {
+                    sceneChanged = true;
+                    SceneManager.LoadScene(sceneName);
+                }
             }
         }
     }
