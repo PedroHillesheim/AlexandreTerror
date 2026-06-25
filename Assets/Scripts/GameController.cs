@@ -15,12 +15,19 @@ public class GameController : MonoBehaviour
 
     [Header("Scene Reference")]
     [Space]
+    [Header("Player")]
     [SerializeField] private Transform _playerTransform;
+    [SerializeField] private CharacterController characterController;
+    [Space]
+    [Header("Nemesis")]
     [SerializeField] private Transform _nemesisTransform;
+    [Space]
+    [Header("TeleportDoor")]
     [SerializeField] private Transform _doorLowFloorTransform;
     [SerializeField] private Transform _doorHighFloorTransform;
+    [Space]
+    [Header("PatrolController")]
     [SerializeField] private PatrolController _patrolController;
-    [SerializeField] private CharacterController characterController;
     [Space]
     [Header("Events")]
     [SerializeField] private UnityEvent _jumpscareUI;
