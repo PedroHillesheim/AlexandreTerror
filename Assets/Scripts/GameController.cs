@@ -9,11 +9,15 @@ public class GameController : MonoBehaviour
     public PatrolController PatrolController { get => _patrolController; }
     public UnityEvent JumpscareUI { get => _jumpscareUI; }
     public Transform NemesisTransform { get => _nemesisTransform; }
+    public Transform DoorLowFloorTransform { get => _doorLowFloorTransform; }
+    public Transform DoorHighFloorTransform { get => _doorHighFloorTransform;  }
 
     [Header("Scene Reference")]
     [Space]
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _nemesisTransform;
+    [SerializeField] private Transform _doorLowFloorTransform;
+    [SerializeField] private Transform _doorHighFloorTransform;
     [SerializeField] private PatrolController _patrolController;
     [Space]
     [Header("Events")]
