@@ -18,12 +18,6 @@ public class SlidingDoor : MonoBehaviour
     public string requiredFlashlight = "Flashlight";
     public string requiredCamera = "Camera";
 
-    [Header("Sons")]
-    public AudioSource audioSource;
-    public AudioClip openSound;
-    public AudioClip closeSound;
-    public AudioClip lockedSound;
-
     [Header("Tremida da Porta Trancada")]
     public float lockedShakeAmount = 0.08f;
     public float lockedShakeSpeed = 40f;
@@ -51,9 +45,6 @@ public class SlidingDoor : MonoBehaviour
     {
         closedPosition = transform.localPosition;
         openPosition = closedPosition + moveDirection;
-
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -86,9 +77,6 @@ public class SlidingDoor : MonoBehaviour
                             shakingLocked = true;
                             shakeTimer = 0f;
 
-                            if (audioSource != null && lockedSound != null)
-                                audioSource.PlayOneShot(lockedSound);
-
                             Debug.Log("Você precisa da chave, lanterna e câmera.");
                             return;
                         }
@@ -98,20 +86,6 @@ public class SlidingDoor : MonoBehaviour
                     isOpen = !isOpen;
                     hasBounced = false;
                     bouncing = false;
-
-                    if (audioSource != null)
-                    {
-                        if (isOpen)
-                        {
-                            if (openSound != null)
-                                audioSource.PlayOneShot(openSound);
-                        }
-                        else
-                        {
-                            if (closeSound != null)
-                                audioSource.PlayOneShot(closeSound);
-                        }
-                    }
                 }
             }
         }
