@@ -5,6 +5,9 @@ public class KeyPickup : MonoBehaviour
     [Header("ID da Chave")]
     public string keyID;
 
+    [Header("Som")]
+    public AudioClip pickupSound;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -18,6 +21,12 @@ public class KeyPickup : MonoBehaviour
                     if (PlayerInventory.Instance != null)
                     {
                         PlayerInventory.Instance.AddKey(keyID);
+                    }
+
+                    // Toca o som antes de destruir a chave
+                    if (pickupSound != null)
+                    {
+                        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
                     }
 
                     Destroy(gameObject);

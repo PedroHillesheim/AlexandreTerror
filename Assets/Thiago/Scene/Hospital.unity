@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -4321,3 +4322,25 @@ SceneRoots:
   - {fileID: 1716810994}
   - {fileID: 1121460485}
   - {fileID: 269187942}
+=======
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pokemon 2D</title>
+<body style="margin:0;background:#102018;color:white;font-family:Arial"><canvas id="c" width="768" height="512" style="width:70%;image-rendering:pixelated"></canvas><aside style="position:fixed;right:0;top:0;width:30%;height:100%;overflow:auto;background:#17231d;padding:12px"><h1>Pokemon 2D</h1><p><b id="caught">1</b>/1025 capturados | <b id="balls">35</b> pokebolas</p><select id="gen"><option value="all">Todas as geracoes</option><option value="1">Geracao I</option><option value="2">Geracao II</option><option value="3">Geracao III</option><option value="4">Geracao IV</option><option value="5">Geracao V</option><option value="6">Geracao VI</option><option value="7">Geracao VII</option><option value="8">Geracao VIII</option><option value="9">Geracao IX</option></select><h2>Time</h2><div id="team"></div><h2>Pokedex</h2><input id="search" placeholder="Buscar numero"><div id="dex"></div><p id="log">Ande na grama com setas ou WASD.</p></aside>
+<dialog id="battle"><h2 id="wild"></h2><img id="sprite" width="160"><p id="bt"></p><button onclick="attack()">Atacar</button><button onclick="catchIt()">Capturar</button><button onclick="closeBattle('Voce fugiu.')">Fugir</button></dialog>
+<script>
+const MAX=1025,GEN=[0,[1,151],[152,251],[252,386],[387,493],[494,649],[650,721],[722,809],[810,905],[906,1025]],N={1:"Bulbasaur",4:"Charmander",7:"Squirtle",25:"Pikachu",133:"Eevee",150:"Mewtwo",151:"Mew",249:"Lugia",250:"Ho-Oh",384:"Rayquaza",448:"Lucario",493:"Arceus",658:"Greninja",778:"Mimikyu",1007:"Koraidon",1008:"Miraidon",1025:"Pecharunt"};
+let p={x:3,y:3}, caught=new Set([25]), balls=35, team=[25,1,4], wild=null, hp=100;
+const map=["WWWWWWWWWWWWWWWWWWWWWWWW","WGGGGGGGGGGGGGGGGGGGGGGW","WGGPPPPPPPPPPPGGGGGGGGGW","WGGPGGGGGGGGGPGGGWWGGGGW","WGGPGGTTTGGGGPGGGWWGGGGW","WGGPGGTTTGGGGPPPPPPPPGGW","WGGPGGGGGGGGGGGGGGGGPGGW","WGGPPPPPPGGGGGGTTTGGPGGW","WGGGGGGGPGGGGGGTTTGGPGGW","WGGGWWGGPPPPPPPPPPPPPGGW","WGGGWWGGGGGGGGGGGGGGGGGW","WGGGGGGGGGGGTTTGGGGGGGGW","WWWWWWWWWWWWWWWWWWWWWWWW"];
+const c=document.getElementById("c"),x=c.getContext("2d"),sprite=id=>`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,name=id=>N[id]||`Pokemon #${String(id).padStart(4,"0")}`;
+function draw(){x.clearRect(0,0,768,512);map.forEach((r,j)=>[...r].forEach((t,i)=>{x.fillStyle=t=="W"?"#2f79a8":t=="P"?"#bd955d":t=="T"?"#2e6e3d":"#4f9b55";x.fillRect(i*32,j*32,32,32)}));x.fillStyle="#ef476f";x.fillRect(p.x*32+8,p.y*32+4,16,24)}
+function move(dx,dy){let nx=p.x+dx,ny=p.y+dy;if(map[ny]?.[nx]&&map[ny][nx]!="W"){p={x:nx,y:ny};if("GT".includes(map[ny][nx])&&Math.random()<.22)startBattle();draw()}}
+function rand(){let g=document.getElementById("gen").value;if(g=="all")return 1+Math.floor(Math.random()*MAX);let [a,b]=GEN[g];return a+Math.floor(Math.random()*(b-a+1))}
+function startBattle(){wild=rand();hp=100;document.getElementById("wild").textContent=name(wild);document.getElementById("sprite").src=sprite(wild);document.getElementById("bt").textContent=`${name(wild)} apareceu!`;battle.showModal()}
+function attack(){hp-=25+Math.floor(Math.random()*25);document.getElementById("bt").textContent=`Voce atacou. HP selvagem: ${Math.max(0,hp)}`;if(hp<=0)closeBattle(`${name(wild)} desmaiou.`)}
+function catchIt(){if(!balls)return;balls--;let chance=.25+(100-hp)/120;if(Math.random()<chance){caught.add(wild);if(team.length<6)team.push(wild);closeBattle(`${name(wild)} foi capturado!`)}else document.getElementById("bt").textContent=`${name(wild)} escapou!`;render()}
+function closeBattle(t){battle.close();document.getElementById("log").textContent=t;render()}
+function render(){caughtEl.textContent=caught.size;ballsEl.textContent=balls;teamEl.innerHTML=team.map(id=>`<p><img src="${sprite(id)}" width="42"> ${name(id)} #${id}</p>`).join("");let s=search.value;dex.innerHTML="";for(let i=1,n=0;i<=MAX&&n<160;i++){if(s&&!String(i).includes(s))continue;dex.innerHTML+=`<p><img src="${sprite(i)}" width="32"> ${caught.has(i)?"OK":"--"} ${name(i)} #${i}</p>`;n++}}
+const caughtEl=caught,ballsEl=balls,teamEl=team;document.getElementById("caught").id="caughtEl";document.getElementById("balls").id="ballsEl";document.getElementById("team").id="teamEl";
+onkeydown=e=>{let k=e.key.toLowerCase();if(k=="arrowup"||k=="w")move(0,-1);if(k=="arrowdown"||k=="s")move(0,1);if(k=="arrowleft"||k=="a")move(-1,0);if(k=="arrowright"||k=="d")move(1,0)};
+search.oninput=render;draw();render();
+</script></body></html>
+>>>>>>> Stashed changes
