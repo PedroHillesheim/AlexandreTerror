@@ -1329,7 +1329,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7663668318772284412, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7705291257981825130, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 715350160}
     m_AddedComponents:
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ba11f1e4e19514eaad7701b40ebb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  openAngle: 90
+  openAngle: -90
   speed: 180
   requiresKey: 1
   keyID: 2
@@ -1679,7 +1679,7 @@ GameObject:
   - component: {fileID: 715350162}
   - component: {fileID: 715350161}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1693,13 +1693,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715350159}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.056396645, z: -0, w: 0.99840844}
-  m_LocalPosition: {x: -0.03699875, y: 1.2410002, z: 0.37400246}
+  m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 988486059}
-  m_LocalEulerAnglesHint: {x: 0, y: 353.534, z: 0}
+  m_Father: {fileID: 991119779}
+  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
 --- !u!114 &715350161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ba11f1e4e19514eaad7701b40ebb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  openAngle: 90
+  openAngle: -90
   speed: 180
   requiresKey: 0
   keyID: 
@@ -2514,11 +2514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4541dfe5644f6d4fa4fde746b2bdc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
---- !u!4 &988486059 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7663668318772284412, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
-  m_PrefabInstance: {fileID: 514259131}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &991119772 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7705291257981825135, guid: b47834d2acd162a4ca58502f020c190e, type: 3}
@@ -2580,7 +2575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ba11f1e4e19514eaad7701b40ebb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  openAngle: 90
+  openAngle: -90
   speed: 180
   requiresKey: 0
   keyID: 
@@ -2837,7 +2832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ba11f1e4e19514eaad7701b40ebb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  openAngle: 90
+  openAngle: -90
   speed: 180
   requiresKey: 0
   keyID: 
@@ -3230,7 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ba11f1e4e19514eaad7701b40ebb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  openAngle: 90
+  openAngle: -90
   speed: 180
   requiresKey: 0
   keyID: 
