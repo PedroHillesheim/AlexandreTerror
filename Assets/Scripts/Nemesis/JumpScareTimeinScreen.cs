@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class JumpScareTimeinScreen : MonoBehaviour
 {
-    [SerializeField] float _jumpScareTime = 1f;
+    [SerializeField] float _jumpScareTime = 4.8f;
+    [SerializeField] private AudioSource _jumpscareSound;
     [Space]
     [SerializeField] UnityEvent _jumpScareDesactivate;
 
@@ -15,6 +16,7 @@ public class JumpScareTimeinScreen : MonoBehaviour
     }
     IEnumerator JumpScareTime()
     {
+        _jumpscareSound.Play();
         yield return new WaitForSeconds(_jumpScareTime);
         _jumpScareDesactivate.Invoke();
     }
