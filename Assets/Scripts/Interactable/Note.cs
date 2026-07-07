@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Note : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool _isOn;
+    private bool _isNoteVisible = false;
     [Header("Event")]
     [SerializeField] private UnityEvent OnTurnOn;
     [SerializeField] private UnityEvent OnTurnOff;
@@ -14,7 +15,17 @@ public class Note : MonoBehaviour, IInteractable
         _outline = GetComponent<Outline>();
         _outline.enabled = false;
     }
-
+    private void Update()
+    {
+        if(!_isNoteVisible == true)
+            return;
+        if (Input.GetButtonDown("Jump"))
+        {
+            OnTurnOff.Invoke();
+            _isNoteVisible = false;
+            _isOn = false;
+        }
+    }
     public void ShowOutline()
     {
         if (_outline != null)
@@ -36,12 +47,13 @@ public class Note : MonoBehaviour, IInteractable
         if (_isOn)
         {
             OnTurnOff.Invoke();
+            _isNoteVisible = false;
         }
         else
         {
             OnTurnOn.Invoke();
+            _isNoteVisible = true;
         }
         _isOn = !_isOn;
-        //Animação do interruptor mudando o botão
     }
 }
