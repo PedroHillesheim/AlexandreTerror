@@ -5,7 +5,6 @@ public class PatrolController : MonoBehaviour
     [SerializeField] private Transform[] _patrolPoints;
     private Transform _nemesis;
     private int _currentPointIndex;
-
     private void Start()
     {
         _nemesis = GameController.Instance.NemesisTransform;
