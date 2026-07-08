@@ -12893,7 +12893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'E - interact
+  m_text: 'Left Mouse Button - interact
 
 '
   m_isRightToLeft: 0
