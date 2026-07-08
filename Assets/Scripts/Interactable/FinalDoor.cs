@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Outline))]
 
 public class FinalDoor : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _endScene = "End";
     private int _keys = 0;
     public UnityEvent _doorOpen;
     private Outline _outline;
@@ -41,5 +43,9 @@ public class FinalDoor : MonoBehaviour, IInteractable
     public void OnKeyCollecr()
     {
         _keys++;
+    }
+    public void ToEndScene()
+    {
+        SceneManager.LoadScene(_endScene);
     }
 }
