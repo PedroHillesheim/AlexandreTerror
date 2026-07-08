@@ -109,7 +109,7 @@ public class Nemesis : MonoBehaviour
                 _nape.SetActive(false);
                 break;
             case EnemyState.Patrolling:
-                if (_isFirstTimePatrolling == true)
+                if (_isFirstTimePatrolling == false)
                 {
                     _agent.SetDestination(_patrolController.GetClosestPoint());
                 }
