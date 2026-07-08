@@ -16,6 +16,10 @@ public class MenuManager : MonoBehaviour
     {
         if (creditsCanvas != null)
             creditsCanvas.SetActive(false);
+        if(Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     // Botão Play
