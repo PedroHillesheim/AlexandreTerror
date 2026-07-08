@@ -80,32 +80,8 @@ public class Nemesis : MonoBehaviour
             gameObject.SetActive(false);
 
             _jumpscareUI.Invoke();
-
-            //if (_jumpscareSound != null)
-            //    _jumpscareSound.Play();
         }
     }
-    /*void AnimationChanger()
-    {
-        if (_currentState.Equals(EnemyState.Chasing))
-        {
-            _animator.SetBool("isChasing", true);
-            _animator.SetBool("isIdle", false);
-            _animator.SetBool("isPatrolling", false);
-        }
-        else if(_currentState.Equals(EnemyState.Idle))
-        {
-            _animator.SetBool("isChasing", false);
-            _animator.SetBool("isIdle", true);
-            _animator.SetBool("isPatrolling", false);
-        }
-        else
-        {
-            _animator.SetBool("isChasing", false);
-            _animator.SetBool("isIdle", false);
-            _animator.SetBool("isPatrolling", true);
-        }
-    }*/
     public void SetState(EnemyState newState)
     {
         Vector3 lastPlaterPos = _player.position;
