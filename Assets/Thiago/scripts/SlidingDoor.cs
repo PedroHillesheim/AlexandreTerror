@@ -49,7 +49,7 @@ public class SlidingDoor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(
                 new Vector3(Screen.width / 2f, Screen.height / 2f)
